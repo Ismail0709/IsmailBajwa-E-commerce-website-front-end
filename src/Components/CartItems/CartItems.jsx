@@ -5,6 +5,54 @@ import { ShopContext } from '../../Context/ShopContext'
 
 const CartItems = () => {
     const {cartItems, deleteFromCart, all_product, getTotalCartAmount} = useContext(ShopContext);
+
+    const getStripe = () => {
+      return new Promise((resolve) => {
+          const stripe = window.Stripe(process.env.REACT_APP_KEY); // Replace with your Stripe publishable key
+          resolve(stripe);
+      });
+  };
+
+    const handleCheckout = async () => {
+      const items = all_product
+      .filter(e => cartItems[e.id] > 0)
+      .map(e => ({
+        name: e.name,
+        image: e.image,
+        new_price: e.new_price,
+        quantity: cartItems[e.id],
+      }));
+      
+      console.log("Items to send:", items);
+      const token = localStorage.getItem('auth-token'); // Replace with your method of getting the token
+    
+      if (!token) {
+        console.error("No authentication token found.");
+        return; // Early return if token is not found
+      }
+
+      const response = await fetch('http://localhost:8000/create-checkout-session', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'auth-token': `${localStorage.getItem('auth-token')}`
+        },
+        body: JSON.stringify({ items }),
+    });
+    
+    const textResponse = await response.text(); // Get raw response text
+    console.log("Raw response:", textResponse); // Log it for debugging
+    const session = JSON.parse(textResponse);
+        console.log("Session response:", session);
+        if (session.id) {
+          const stripe = await getStripe(); // Initialize Stripe
+          stripe.redirectToCheckout({ sessionId: session.id });
+      } else {
+          console.error("No session ID returned:", session);
+      }
+  };
+
+
   return (
     <div className='cartitems'>
       <div className="cartitems-format-main">
@@ -18,7 +66,7 @@ const CartItems = () => {
       <hr />
       {all_product.map((e)=>{
         if(cartItems[e.id]>0){
-        return <div>
+        return (<div key={e.id}>
             <div className="cartitems-format cartitems-format-main">
                 <img src={e.image} alt="" className="carticon-product-icon" />
                 <p>{e.name}</p>
@@ -28,7 +76,7 @@ const CartItems = () => {
                 <img className='cartitem-remove-icon' src={remove_icon} onClick={()=> deleteFromCart(e.id)} alt="" />
             </div>
             <hr />
-        </div>
+        </div>);
     }
     return null;
       })}
@@ -51,7 +99,7 @@ const CartItems = () => {
                     <h3>${getTotalCartAmount()}</h3>
                 </div>
             </div>
-            <button>PROCEED TO CHECKOUT</button>
+            <button onClick={handleCheckout}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cartitems-promocode">
             <p>If you have a promo code, Enter it here</p>
