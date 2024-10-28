@@ -6,11 +6,17 @@ const NewCollections = () => {
 
   const[new_collection, setNew_Collection] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch('http://localhost:8000/newCollections')
-    .then((res)=> res.json())
-    .then((data)=> setNew_Collection(data))
-  },[]);
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then((data) => setNew_Collection(data))
+      .catch((error) => console.error('Fetch error:', error));
+  }, []);
 
   return (
     <div className='new-collections'>

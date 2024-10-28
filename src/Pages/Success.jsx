@@ -48,16 +48,3 @@ function Success() {
 }
 
 export default Success;
-
-
-
-/*
-<div className='paymentbutton-container'>
-              <Link to="/cart">
-                <button className='payment-button'>Go to Cart</button>
-              </Link>
-            </div>
-
-            <button className='payment-button'>Go to your Dashboard</button>
-
-*/

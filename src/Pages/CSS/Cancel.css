@@ -1,10 +1,10 @@
-.payment-main{
+.payment-cancel-main{
     height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.payment-container{
+.payment-cancel-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,19 +16,19 @@
     height: 56vh;
     background-color: #FAD4D4;
 }
-.payment-image{
+.payment-cancel-image{
     width: 120px;
     height: 120px;
 }
 
-.payment-title{
+.payment-cancel-title{
     color: #383838;
     font-size: 46px;
     font-weight: 700;
     padding: 30px 0px;
 }
 
-.payment-details{
+.payment-cancel-details{
     font-size: 20px;
     color: #383838;
     font-weight: 500;
@@ -36,7 +36,7 @@
     text-align: center;
 }
 
-.payment-button{
+.payment-cancel-button{
     height: 50px;
     width: 50vh;
     font-size: 20px;
@@ -48,6 +48,47 @@
     cursor: pointer;
 }
 
-.paymentbutton-container{
+.paymentbutton-cancel-container{
     padding-top: 50px;
+}
+
+@media (max-width: 1280px) {
+    .payment-cancel-container {
+        width: 60%;
+    }
+    .payment-cancel-title {
+        font-size: 38px;
+    }
+    .payment-cancel-details {
+        font-size: 18px;
+    }
+    .payment-cancel-button {
+        width: 45vh;
+        font-size: 18px;
+    }
+}
+
+/* Styles for screens 800px and below */
+@media (max-width: 800px) {
+    .payment-cancel-container {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .payment-cancel-image {
+        width: 100px;
+        height: 100px;
+    }
+    .payment-cancel-title {
+        font-size: 32px;
+        padding: 20px 0;
+    }
+    .payment-cancel-details {
+        font-size: 16px;
+        padding: 5px;
+    }
+    .payment-cancel-button {
+        width: 40vh;
+        font-size: 16px;
+    }
 }

@@ -5,17 +5,17 @@ import cancel from '../Components/Assets/error.png';
 
 function Cancel() {
   return (
-    <div className="payment-main">
-          <div className='payment-container'>
-            <img className='payment-image' src={cancel} alt="" />
-            <h1 className='payment-title'>Payment Cancelled</h1>
-            <div className='payment-details'>
+    <div className="payment-cancel-main">
+          <div className='payment-cancel-container'>
+            <img className='payment-cancel-image' src={cancel} alt="" />
+            <h1 className='payment-cancel-title'>Payment Cancelled</h1>
+            <div className='payment-cancel-details'>
               <p>Your payment has been cancelled.</p>
               <p>If you wish to try again, please return to your cart.</p>
             </div>
-            <div className='paymentbutton-container'>
+            <div className='paymentbutton-cancel-container'>
               <Link to="/cart">
-                <button className='payment-button'>Go to Cart</button>
+                <button className='payment-cancel-button'>Go to Cart</button>
               </Link>
             </div>
             

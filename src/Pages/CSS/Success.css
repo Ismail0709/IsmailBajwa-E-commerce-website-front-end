@@ -13,7 +13,7 @@
     border-radius: 12px;
     border: 6px solid #25AE88;
     width: 42%;
-    height: 56vh;
+    height: 75%;
     background-color: #E2F1E7;
 }
 .payment-image{
@@ -57,4 +57,50 @@
     border-radius: 12px;
     border: none;
     cursor: pointer;
+}
+
+@media (max-width: 1280px) {
+    .payment-container {
+        width: 60%;
+    }
+    .payment-title {
+        font-size: 38px;
+    }
+    .payment-details {
+        width: 450px;
+        font-size: 18px;
+    }
+    .payment-button {
+        width: 45vh;
+        font-size: 18px;
+    }
+}
+
+/* Styles for screens 800px and below */
+@media (max-width: 800px) {
+    .payment-container {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .payment-image {
+        width: 100px;
+        height: 100px;
+    }
+    .payment-title {
+        font-size: 32px;
+        padding: 20px 0;
+    }
+    .payment-details {
+        width: 100%;
+        font-size: 16px;
+        padding-bottom: 15px;
+    }
+    .heading {
+        font-size: 18px;
+    }
+    .payment-button {
+        width: 40vh;
+        font-size: 16px;
+    }
 }

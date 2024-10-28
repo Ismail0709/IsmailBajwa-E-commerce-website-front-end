@@ -47,6 +47,13 @@
     font-size: 22px;
     font-weight: 500;
 }
+.hero-latest-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the parent color */
+    gap: 10px;
+}
 .hero-right{
     flex: 0.97;
     display: flex;
